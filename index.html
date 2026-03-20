@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1e293b" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <title>Armazém de Livros</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside id="sidebar" class="sidebar" aria-label="Barra lateral de livros">
+      <div class="title">
+        <span>Meus livros</span>
+        <button id="closeSidebar" class="btn-icon" aria-label="Fechar sidebar">×</button>
+      </div>
+      <div class="search-wrap">
+        <input id="searchInput" type="search" placeholder="Buscar livro..." aria-label="Filtro de livros" />
+      </div>
+      <div style="padding: 10px; border-bottom: 1px solid #2f3540; display: flex; justify-content: flex-end;">
+        <button id="deleteAll" class="action-btn" style="font-size: 0.8rem; padding: 6px 10px;">Excluir todos</button>
+      </div>
+      <ul id="booksList" class="books-list" role="list"></ul>
+    </aside>
+
+    <main id="main" class="main" aria-live="polite">
+      <div class="top-bar">
+        <button id="openSidebar" class="btn-icon" aria-label="Abrir sidebar">☰</button>
+        <h1>Registro de Leitura</h1>
+        <button id="installBtn" class="action-btn" style="margin-left: auto; display: none;">Instalar app</button>
+      </div>
+
+      <section class="panel">
+        <h2>Adicionar/Atualizar livro</h2>
+        <form id="bookForm">
+          <div class="field">
+            <label for="title">Título</label>
+            <input id="title" required />
+          </div>
+          <div class="field">
+            <label for="author">Autor</label>
+            <input id="author" required />
+          </div>
+          <div class="field">
+            <label for="cover">URL da Capa</label>
+            <input id="cover" placeholder="https://..." />
+          </div>
+          <div class="field">
+            <label for="totalPages">Total de páginas</label>
+            <input id="totalPages" type="number" min="1" value="1" required />
+          </div>
+          <div class="field">
+            <label for="currentPage">Página atual</label>
+            <input id="currentPage" type="number" min="1" value="1" required />
+          </div>
+          <div class="field">
+            <label for="pdfFile">Arquivo PDF do livro</label>
+            <label class="file-label">
+              Escolher arquivo
+              <input id="pdfFile" type="file" accept="application/pdf" />
+            </label>
+          </div>
+          <div class="field">
+            <label for="notes">Anotações (opcional)</label>
+            <textarea id="notes" rows="3" placeholder="Lembretes..."></textarea>
+          </div>
+          <button type="submit" class="action-btn">Salvar</button>
+          <button type="reset" class="action-btn" style="margin-top: 6px;">Limpar seleção</button>
+          <button id="deleteBook" type="button" class="action-btn" style="margin-top: 6px;">Excluir livro</button>
+        </form>
+
+        <div class="resume-box" id="resumeBox">
+          <h3 id="resumeTitle">Nenhum livro selecionado</h3>
+          <p id="resumeText">Clique em um livro na barra lateral para abrir o PDF e continuar a leitura.</p>
+        </div>
+
+        <div class="pdf-wrapper" id="pdfWrapper" style="display:none;">
+          <div class="pdf-tools">
+            <button id="prevPage" type="button">◀ Página anterior</button>
+            <button id="nextPage" type="button">Próxima página ▶</button>
+            <span id="pageIndicator">Página 0 / 0</span>
+            <button id="savePage" type="button">Salvar posição</button>
+          </div>
+          <div class="pdf-container"><canvas id="pdfCanvas"></canvas></div>
+        </div>
+
+        <p class="help-text">Use o botão "☰" para abrir a lista, clique no livro para abrir o PDF, e botões para navegar e salvar posição.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
