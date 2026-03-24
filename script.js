@@ -4,18 +4,20 @@ const sidebar = document.getElementById('sidebar');
 const openSidebar = document.getElementById('openSidebar');
 const closeSidebar = document.getElementById('closeSidebar');
 
-// Sidebar inicia aberta só em desktop, fechada em mobile
-function setInitialSidebarState() {
-  if (window.innerWidth < 880) {
-    sidebar.classList.remove('open');
-    document.getElementById('main').classList.remove('shifted');
-  } else {
+// Sidebar sempre inicia fechada
+window.addEventListener('DOMContentLoaded', () => {
+  sidebar.classList.remove('open');
+  document.getElementById('main').classList.remove('shifted');
+
+  openSidebar.addEventListener('click', () => {
     sidebar.classList.add('open');
     document.getElementById('main').classList.add('shifted');
-  }
-}
-window.addEventListener('DOMContentLoaded', setInitialSidebarState);
-window.addEventListener('resize', setInitialSidebarState);
+  });
+  closeSidebar.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    document.getElementById('main').classList.remove('shifted');
+  });
+});
 const booksList = document.getElementById('booksList');
 const searchInput = document.getElementById('searchInput');
 const bookForm = document.getElementById('bookForm');
@@ -320,6 +322,18 @@ function renderBooks(filter = '') {
     const menu = document.createElement('div');
     menu.className = 'book-menu';
 
+
+    // Botão de adicionar aos favoritos
+    const favMenuBtn = document.createElement('button');
+    favMenuBtn.textContent = book.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+    favMenuBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      closeAllMenus();
+      book.favorite = !book.favorite;
+      saveLocalBooks();
+      renderBooks();
+    });
+
     const pinBtn = document.createElement('button');
     pinBtn.textContent = book.pin ? 'Desafixar no topo' : 'Fixar no topo';
     pinBtn.addEventListener('click', async e => {
@@ -337,6 +351,7 @@ function renderBooks(filter = '') {
       await deleteIndividualBook(book.id);
     });
 
+    menu.appendChild(favMenuBtn);
     menu.appendChild(pinBtn);
     menu.appendChild(removeBtn);
 

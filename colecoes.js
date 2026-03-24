@@ -47,6 +47,7 @@ function renderLivrosColecao(idx) {
     li.textContent = `${livro.title} (${livro.author})`;
     const rmvBtn = document.createElement('button');
     rmvBtn.textContent = 'Remover';
+    rmvBtn.className = 'action-btn';
     rmvBtn.style.marginLeft = '10px';
     rmvBtn.onclick = () => {
       col.livros = col.livros.filter(id => id !== lid);
@@ -71,6 +72,7 @@ function renderLivrosColecao(idx) {
   });
   const addBtn = document.createElement('button');
   addBtn.textContent = 'Adicionar';
+  addBtn.className = 'action-btn';
   addBtn.onclick = () => {
     if (!select.value) return;
     col.livros.push(select.value);
@@ -84,6 +86,7 @@ function renderLivrosColecao(idx) {
   // Voltar
   const backBtn = document.createElement('button');
   backBtn.textContent = 'Voltar para coleções';
+  backBtn.className = 'action-btn';
   backBtn.style.marginTop = '18px';
   backBtn.onclick = () => renderColecoes();
   container.appendChild(backBtn);
