@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#1e293b" />
   <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <title>Armazém de Livros</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
@@ -29,7 +30,7 @@
       <header class="top-bar">
         <button id="openSidebar" class="btn-icon" aria-label="Abrir sidebar">☰</button>
         <h1>Registro de Leitura</h1>
-        <nav style="display: flex; gap: 8px; margin-left: auto;">
+        <nav class="top-nav">
           <a href="franquias.html" class="btn-icon" title="Franquias">Franquias</a>
           <a href="favoritos.html" class="btn-icon" title="Favoritos">Favoritos</a>
           <a href="colecoes.html" class="btn-icon" title="Coleções">Coleções</a>
@@ -98,5 +99,6 @@
 
   <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
   <script src="script.js"></script>
+  <script src="pwa.js"></script>
 </body>
 </html>

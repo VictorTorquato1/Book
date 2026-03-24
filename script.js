@@ -627,34 +627,6 @@ bookForm.addEventListener('reset', () => {
 (async function init() {
   await loadBooks();
   renderBooks();
-
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('Service Worker registrado:', reg.scope))
-      .catch(err => console.warn('Falha ao registrar Service Worker:', err));
-  }
-
-  let deferredPrompt = null;
-  const installBtn = document.getElementById('installBtn');
-
-  window.addEventListener('beforeinstallprompt', event => {
-    event.preventDefault();
-    deferredPrompt = event;
-    installBtn.style.display = 'inline-block';
-  });
-
-  installBtn.addEventListener('click', async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    const choiceResult = await deferredPrompt.userChoice;
-    if (choiceResult.outcome === 'accepted') {
-      console.log('Usuário aceitou instalar o PWA');
-    } else {
-      console.log('Usuário rejeitou instalar o PWA');
-    }
-    deferredPrompt = null;
-    installBtn.style.display = 'none';
-  });
 })();
 
 document.addEventListener('keydown', event => {
