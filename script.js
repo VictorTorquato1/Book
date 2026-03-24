@@ -3,6 +3,19 @@ const API_BASE = (location.origin && location.origin !== 'null' ? location.origi
 const sidebar = document.getElementById('sidebar');
 const openSidebar = document.getElementById('openSidebar');
 const closeSidebar = document.getElementById('closeSidebar');
+
+// Sidebar inicia aberta só em desktop, fechada em mobile
+function setInitialSidebarState() {
+  if (window.innerWidth < 880) {
+    sidebar.classList.remove('open');
+    document.getElementById('main').classList.remove('shifted');
+  } else {
+    sidebar.classList.add('open');
+    document.getElementById('main').classList.add('shifted');
+  }
+}
+window.addEventListener('DOMContentLoaded', setInitialSidebarState);
+window.addEventListener('resize', setInitialSidebarState);
 const booksList = document.getElementById('booksList');
 const searchInput = document.getElementById('searchInput');
 const bookForm = document.getElementById('bookForm');
@@ -71,14 +84,17 @@ async function apiFetch(path, options = {}) {
 async function loadBooks() {
   if (!apiAvailable) {
     loadLocalBooks();
+    renderBooks(searchInput.value);
     return;
   }
 
   try {
     const res = await apiFetch('/books');
     books = await res.json();
+    renderBooks(searchInput.value);
   } catch (err) {
     loadLocalBooks();
+    renderBooks(searchInput.value);
   }
 }
 
@@ -147,7 +163,8 @@ async function updateBook(bookId, formData, bookItem) {
           cover: formData.get('cover') || books[idx].cover,
           notes: formData.get('notes') || books[idx].notes,
           lastPage: Number(formData.get('lastPage')) || books[idx].lastPage,
-          pin: formData.get('pin') === 'true' || books[idx].pin
+          pin: formData.get('pin') === 'true' || books[idx].pin,
+          favorite: formData.get('favorite') === 'true' || books[idx].favorite || false
         };
       }
     }
@@ -172,7 +189,8 @@ async function updateBook(bookId, formData, bookItem) {
           cover: formData.get('cover') || books[idx].cover,
           notes: formData.get('notes') || books[idx].notes,
           lastPage: Number(formData.get('lastPage')) || books[idx].lastPage,
-          pin: formData.get('pin') === 'true' || books[idx].pin
+          pin: formData.get('pin') === 'true' || books[idx].pin,
+          favorite: formData.get('favorite') === 'true' || books[idx].favorite || false
         };
       }
     }
@@ -255,6 +273,23 @@ function renderBooks(filter = '') {
     li.tabIndex = 0;
     li.title = 'Clique para abrir o PDF e continuar a leitura';
 
+    // Botão de favorito
+    const favBtn = document.createElement('button');
+    favBtn.className = 'fav-btn';
+    favBtn.title = book.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+    favBtn.innerHTML = book.favorite ? '⭐' : '☆';
+    favBtn.style.fontSize = '1.4rem';
+    favBtn.style.background = 'none';
+    favBtn.style.border = 'none';
+    favBtn.style.cursor = 'pointer';
+    favBtn.style.marginRight = '8px';
+    favBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      book.favorite = !book.favorite;
+      saveLocalBooks();
+      renderBooks(searchInput.value);
+    });
+
     const img = document.createElement('img');
     img.src = book.cover || 'https://via.placeholder.com/42x60?text=Livro';
     img.alt = `${book.title} capa`;
@@ -263,9 +298,11 @@ function renderBooks(filter = '') {
     info.className = 'book-info';
     info.innerHTML = `<div class="title">${book.title}</div><div class="author">${book.author}</div><div class="progress">${formatProgress(book)}</div>`;
 
+    li.appendChild(favBtn);
     li.appendChild(img);
     li.appendChild(info);
 
+    // ...existing code...
     const actionWrapper = document.createElement('div');
     actionWrapper.style.position = 'relative';
     actionWrapper.style.display = 'flex';
@@ -480,8 +517,21 @@ bookForm.addEventListener('submit', async event => {
     formData.append('pdfFile', file);
   }
 
+  let saveAsNew = false;
+  if (selectedBookId) {
+    const selected = books.find(b => b.id === selectedBookId);
+    if (selected && (selected.title !== title || selected.author !== author || selected.cover !== cover || Number(selected.totalPages) !== totalPages || Number(selected.currentPage) !== currentPage || (selected.notes || '') !== notes)) {
+      saveAsNew = !confirm('Você está editando um livro existente. Clique em OK para atualizar o livro atual ou Cancelar para adicionar um novo livro.');
+    }
+  }
+
+  if (saveAsNew) {
+    selectedBookId = null;
+  }
+
+  const bookId = selectedBookId || Date.now().toString();
   const bookItem = {
-    id: selectedBookId || Date.now().toString(),
+    id: bookId,
     title,
     author,
     cover,
