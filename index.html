@@ -34,7 +34,44 @@
           <a href="franquias.html" class="btn-icon" title="Franquias">Franquias</a>
           <a href="favoritos.html" class="btn-icon" title="Favoritos">Favoritos</a>
           <a href="colecoes.html" class="btn-icon" title="Coleções">Coleções</a>
+          <a href="formulario.html" class="btn-icon btn-auth" id="registerBtn" title="Registrar">Registrar</a>
+          <a href="login.html" class="btn-icon btn-auth" id="loginBtn" title="Login">Login</a>
+          <button id="userIcon" class="btn-icon" style="display:none; border-radius:50%; width:36px; height:36px; overflow:hidden; background:#eee; border:1px solid #ccc;" title="Perfil">
+            <img id="userPhotoIcon" src="https://via.placeholder.com/36x36?text=U" alt="Foto do usuário" style="width:36px; height:36px; border-radius:50%; object-fit:cover;" />
+          </button>
+          <button id="logoutBtn" class="btn-icon btn-auth" style="display:none;">Sair</button>
           <button id="installBtn" class="action-btn" style="display: none;">Instalar app</button>
+          <script>
+            function updateAuthUI() {
+              const user = JSON.parse(localStorage.getItem('user'));
+              const registerBtn = document.getElementById('registerBtn');
+              const loginBtn = document.getElementById('loginBtn');
+              const userIcon = document.getElementById('userIcon');
+              const logoutBtn = document.getElementById('logoutBtn');
+              const userPhotoIcon = document.getElementById('userPhotoIcon');
+              if (user) {
+                registerBtn.style.display = 'none';
+                loginBtn.style.display = 'none';
+                userIcon.style.display = 'inline-block';
+                logoutBtn.style.display = 'inline-block';
+                userPhotoIcon.src = user.photo || 'https://via.placeholder.com/36x36?text=U';
+              } else {
+                registerBtn.style.display = 'inline-block';
+                loginBtn.style.display = 'inline-block';
+                userIcon.style.display = 'none';
+                logoutBtn.style.display = 'none';
+                userPhotoIcon.src = 'https://via.placeholder.com/36x36?text=U';
+              }
+            }
+            document.getElementById('userIcon').addEventListener('click', function() {
+              window.location.href = 'profile.html';
+            });
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+              localStorage.removeItem('user');
+              updateAuthUI();
+            });
+            window.addEventListener('DOMContentLoaded', updateAuthUI);
+          </script>
         </nav>
       </header>
 

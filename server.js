@@ -5,9 +5,27 @@ const multer = require('multer');
 const cors = require('cors');
 
 const app = express();
+const sqlite3 = require('sqlite3').verbose();
+const bcrypt = require('bcrypt');
+
 const port = process.env.PORT || 3000;
 const dataPath = path.join(__dirname, 'books.json');
 const uploadPath = path.join(__dirname, 'uploads');
+
+
+// Initialize SQLite database
+const db = new sqlite3.Database('./users.db', (err) => {
+  if (err) {
+    console.error('Erro ao conectar ao banco de dados:', err.message);
+  } else {
+    db.run(`CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE,
+      password TEXT NOT NULL
+    )`);
+  }
+});
 
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath);
@@ -28,6 +46,43 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 app.use('/uploads', express.static(uploadPath));
+
+// Rota de registro
+app.post('/register', async (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ error: 'Preencha todos os campos.' });
+  }
+  const hash = await bcrypt.hash(password, 10);
+  db.run(
+    'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
+    [name, email, hash],
+    function (err) {
+      if (err) {
+        if (err.message.includes('UNIQUE')) {
+          return res.status(409).json({ error: 'Email já cadastrado.' });
+        }
+        return res.status(500).json({ error: 'Erro ao registrar usuário.' });
+      }
+      res.status(201).json({ id: this.lastID, name, email });
+    }
+  );
+});
+
+// Rota de login
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: 'Preencha todos os campos.' });
+  }
+  db.get('SELECT * FROM users WHERE email = ?', [email], async (err, user) => {
+    if (err) return res.status(500).json({ error: 'Erro no servidor.' });
+    if (!user) return res.status(401).json({ error: 'Usuário não encontrado.' });
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(401).json({ error: 'Senha incorreta.' });
+    res.json({ id: user.id, name: user.name, email: user.email });
+  });
+});
 
 function readBooks() {
   if (!fs.existsSync(dataPath)) return [];

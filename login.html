@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <main id="main" class="main" aria-live="polite">
+      <header class="top-bar">
+        <a href="index.html" class="btn-icon" aria-label="Página inicial">🏠</a>
+        <h1>Login</h1>
+        <nav class="top-nav">
+          <a href="formulario.html" class="btn-icon btn-auth">Registrar</a>
+        </nav>
+      </header>
+      <section class="panel" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 340px;">
+        <form id="loginForm" style="width: 100%; max-width: 350px;">
+          <div class="field">
+            <label for="usuario">Usuário ou Email</label>
+            <input type="text" id="usuario" name="usuario" required />
+          </div>
+          <div class="field">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required />
+          </div>
+          <button type="submit" class="action-btn">Entrar</button>
+        </form>
+        <script>
+        // Preenche automaticamente se veio do registro
+        window.addEventListener('DOMContentLoaded', function() {
+          const last = localStorage.getItem('lastRegister');
+          if (last) {
+            try {
+              const { email, password } = JSON.parse(last);
+              document.getElementById('usuario').value = email || '';
+              document.getElementById('senha').value = password || '';
+              localStorage.removeItem('lastRegister');
+            } catch {}
+          }
+        });
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const email = document.getElementById('usuario').value.trim();
+          const password = document.getElementById('senha').value;
+          if (!email || !password) return alert('Preencha todos os campos.');
+          try {
+            const res = await fetch('/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+            if (!res.ok) {
+              const data = await res.json();
+              alert(data.error || 'Erro ao fazer login.');
+              return;
+            }
+            const user = await res.json();
+            localStorage.setItem('user', JSON.stringify(user));
+            window.location.href = 'index.html';
+          } catch (err) {
+            alert('Erro ao conectar ao servidor.');
+          }
+        });
+        </script>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
