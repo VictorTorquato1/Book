@@ -1,10 +1,10 @@
 .btn-auth {
-  background: linear-gradient(100deg, #7289da 0%, #53c3c1 100%);
+  background: linear-gradient(100deg, #7b1e2b 0%, #5d0f1b 100%);
   color: #fff !important;
   font-weight: 800;
   letter-spacing: 0.03em;
-  border: 2.5px double #53c3c1;
-  box-shadow: 0 2px 18px 0 #53c3c155, 0 0 0 2px #7289da55;
+  border: 2.5px double #d9b07d;
+  box-shadow: 0 2px 18px 0 rgba(123, 30, 43, 0.35), 0 0 0 2px rgba(93, 15, 27, 0.28);
   border-radius: 999px;
   padding: 0.7em 2.2em;
   margin-left: 8px;
@@ -20,29 +20,29 @@
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
   border-radius: 999px;
-  background: linear-gradient(120deg, #fff6 0%, #7289da33 60%, #53c3c122 100%);
+  background: linear-gradient(120deg, #fff6 0%, rgba(217, 176, 125, 0.28) 60%, rgba(123, 30, 43, 0.18) 100%);
   opacity: 0.18;
   pointer-events: none;
   z-index: 1;
 }
 .btn-auth:hover, .btn-auth:focus {
-  background: linear-gradient(100deg, #53c3c1 0%, #7289da 100%);
+  background: linear-gradient(100deg, #932737 0%, #6a1420 100%);
   color: #fff;
   transform: scale(1.10) rotate(-1deg);
-  box-shadow: 0 6px 28px 0 #53c3c1aa, 0 0 0 3px #7289da99;
+  box-shadow: 0 6px 28px 0 rgba(123, 30, 43, 0.45), 0 0 0 3px rgba(217, 176, 125, 0.38);
 }
 .btn-auth:active {
   filter: brightness(1.08) saturate(1.2);
-  box-shadow: 0 2px 10px 0 #53c3c1bb;
+  box-shadow: 0 2px 10px 0 rgba(123, 30, 43, 0.45);
 }
 /* Fieldset customizado para formulário */
 .custom-fieldset {
   border: 1.5px solid var(--border);
   border-radius: 10px;
-  background: #181e2a;
+  background: var(--panel);
   padding: 18px 16px 10px 16px;
   margin-bottom: 18px;
-  box-shadow: 0 2px 8px rgba(30,40,60,0.10);
+  box-shadow: 0 2px 8px rgba(107, 74, 46, 0.12);
 }
 .custom-fieldset legend {
   color: var(--accent);
@@ -67,7 +67,7 @@
   transition: background 0.18s;
 }
 .radio-label:hover {
-  background: #232a36;
+  background: #ead39b;
 }
 .radio-label input[type="radio"] {
   accent-color: var(--accent);
@@ -75,12 +75,14 @@
   height: 18px;
 }
 :root {
-  --bg: #0e1117;
-  --panel: #1a1f28;
-  --accent: #7289da;
-  --text: #d7e3f4;
-  --muted: #8c98a7;
-  --border: #2f3540;
+  --bg: #f3e2a9;
+  --panel: #f6ebc8;
+  --accent: #8b5e34;
+  --action: #1e3fb8;
+  --action-hover: #2e5bff;
+  --text: #4d3926;
+  --muted: #7a6347;
+  --border: #c9ae72;
 }
 
 * { box-sizing: border-box; }
@@ -97,17 +99,17 @@ body::before {
   content: "";
   position: fixed;
   left: 0; top: 0; right: 0; height: 140px;
-  background: radial-gradient(ellipse at top center, #e0e6f730 0%, #b0b0b033 40%, #232a3620 80%, #232a3600 100%);
+  background: radial-gradient(ellipse at top center, #fff4cf 0%, #e3c98566 42%, #c79b4c22 78%, #c79b4c00 100%);
   z-index: 0;
   pointer-events: none;
-  mix-blend-mode: lighten;
+  mix-blend-mode: multiply;
 }
 .btn-icon {
   padding: 0.7em 1.7em;
   border: none;
   border-radius: 999px;
-  background: #171c26;
-  color: var(--text);
+  background: #6f1623;
+  color: #f9f0da;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -133,8 +135,8 @@ body::before {
   right: -4px;
   bottom: -4px;
   border-radius: 999px;
-  border: 3px solid #e0e6f7;
-  box-shadow: 0 0 8px 2px #b0c4ff66, 0 0 0 2px #7289da33;
+  border: 3px solid #ead6ab;
+  box-shadow: 0 0 8px 2px rgba(201, 174, 114, 0.45), 0 0 0 2px rgba(111, 22, 35, 0.24);
   pointer-events: none;
   z-index: 2;
   transition: border-color 0.2s, border-image 0.2s, box-shadow 0.2s;
@@ -155,10 +157,10 @@ body::before {
 
 /* Efeito metálico animado na borda ao passar o mouse */
 .btn-icon:hover, .btn-icon:focus {
-  background: #232a36;
+  background: #8f2232;
   color: #fff;
   text-decoration: none !important;
-  box-shadow: 0 2px 16px rgba(80,120,200,0.18);
+  box-shadow: 0 2px 16px rgba(111, 22, 35, 0.3);
   transform: scale(1.08);
 }
 
@@ -198,8 +200,8 @@ body::before {
   width: 100%;
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid #444d5e;
-  background: #121825;
+  border: 1px solid var(--border);
+  background: #fcf4dc;
   color: var(--text);
   outline: none;
 }
@@ -217,7 +219,7 @@ body::before {
   align-items: center;
   gap: 10px;
   margin: 7px 0;
-  background: #141b25;
+  background: #f8eed0;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 8px;
@@ -226,7 +228,7 @@ body::before {
 
 .ellipsis-btn {
   border: 1px solid var(--border);
-  background: #171c26;
+  background: #eeddb2;
   color: var(--text);
   border-radius: 8px;
   width: 30px;
@@ -239,7 +241,7 @@ body::before {
   position: absolute;
   top: calc(100% + 6px);
   right: 8px;
-  background: #1d2532;
+  background: #f8eed0;
   border: 1px solid var(--border);
   border-radius: 8px;
   min-width: 150px;
@@ -265,7 +267,7 @@ body::before {
 }
 
 .book-menu button:hover {
-  background: #29344a;
+  background: #ead39b;
 }
 
 .book-card:hover { border-color: var(--accent); }
@@ -275,7 +277,7 @@ body::before {
   height: 60px;
   object-fit: cover;
   border-radius: 6px;
-  background: #2a3340;
+  background: #e4cf98;
 }
 
 .book-info {
@@ -320,6 +322,21 @@ body::before {
   font-size: clamp(1.15rem, 3.5vw, 1.6rem);
 }
 
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.brand-title-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .top-nav {
   display: flex;
   flex-wrap: wrap;
@@ -330,7 +347,7 @@ body::before {
 /* Removido bloco duplicado de .btn-icon e hover com borda branca e gradiente */
 
 .panel {
-  background: #131923;
+  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 18px;
@@ -353,7 +370,7 @@ form input, form textarea, form button {
   width: 100%;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #101522;
+  background: #fcf4dc;
   color: var(--text);
   padding: 10px;
   outline: none;
@@ -363,16 +380,21 @@ form input, form textarea, form button {
 form button {
   margin-top: 8px;
   border: none;
-  background: var(--accent);
+  background: var(--action);
   color: white;
   font-weight: 700;
   cursor: pointer;
 }
 
+form button:hover,
+form button:focus {
+  background: var(--action-hover);
+}
+
 .resume-box {
   margin-top: 20px;
   border: 1px solid var(--border);
-  background: #131a24;
+  background: #f4e6bd;
   border-radius: 12px;
   padding: 14px;
 }
@@ -384,7 +406,7 @@ form button {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  background: #0f1520;
+  background: #ead8aa;
 }
 
 .pdf-tools {
@@ -394,16 +416,21 @@ form button {
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid var(--border);
-  background: #121a27;
+  background: #efdfb5;
 }
 
 .pdf-tools button {
   border: 1px solid var(--border);
   border-radius: 8px;
-  background: #1c2532;
-  color: var(--text);
+  background: var(--action);
+  color: #fff;
   padding: 6px 10px;
   cursor: pointer;
+}
+
+.pdf-tools button:hover,
+.pdf-tools button:focus {
+  background: var(--action-hover);
 }
 
 .pdf-tools span {
@@ -432,14 +459,14 @@ form button {
   border-radius: 12px;
   padding: 10px 14px;
   border: 1px solid transparent;
-  background: linear-gradient(90deg, #506883, #3c5a77, #2f4f72, #233f64);
+  background: linear-gradient(90deg, #2e5bff, #1e3fb8, #19359a, #142c7e);
   background-size: 400% auto;
   color: white;
   font-weight: 700;
   transition: transform 0.25s ease, background-position 0.7s ease;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 12px rgba(30, 63, 184, 0.28);
 }
 
 .action-btn:hover, .file-label:hover {
@@ -480,6 +507,15 @@ form button {
   .top-bar h1 {
     margin-left: 0;
     width: 100%;
+  }
+
+  .brand-title {
+    gap: 8px;
+  }
+
+  .brand-title-logo {
+    width: 46px;
+    height: 46px;
   }
 
   .top-nav {
