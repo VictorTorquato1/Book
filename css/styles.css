@@ -87,7 +87,6 @@
 
 * { box-sizing: border-box; }
 body {
- background: var(--bg) url("../img/360_F_462812441_tXsE117pftVEp8TEyaxT8GQVLJkpExRo.jpg") center/cover no-repeat fixed;
   color: var(--text);
   font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
   margin: 0;
@@ -341,7 +340,13 @@ body::before {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-left: auto;
+  margin-left: 0;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  align-items: center;
+  z-index: 110;
   justify-content: flex-end;
 }
 /* Removido bloco duplicado de .btn-icon e hover com borda branca e gradiente */
@@ -398,6 +403,40 @@ form button:focus {
   border-radius: 12px;
   padding: 14px;
 }
+
+/* Fundo específico para a página de login */
+body.login-page {
+  background-image: url("../img/livros.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Garantir que a camada de conteúdo fique acima do fundo */
+body.login-page .app {
+  position: relative;
+  z-index: 2;
+}
+
+/* (overlay removido) */
+
+/* Centralizar o painel de login na tela */
+body.login-page .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px 16px;
+}
+
+body.login-page .main .panel {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
+  max-width: 420px;
+}
+
+
 
 .resume-box h3 { margin: 0 0 8px; }
 
@@ -556,4 +595,7 @@ form button:focus {
   .book-card {
     align-items: flex-start;
   }
+}
+.quadrado {
+  background-color: rgba(255, 255, 255, 0.7);
 }
