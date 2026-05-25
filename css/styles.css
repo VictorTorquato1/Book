@@ -76,7 +76,7 @@
 }
 :root {
   --bg: #f3e2a9;
-  --panel: #f6ebc8;
+  --panel: #FBF3E8;/*cor trocada*/
   --accent: #8b5e34;
   --action: #1e3fb8;
   --action-hover: #2e5bff;
@@ -499,14 +499,14 @@ body.login-page .main .panel {
   border-radius: 12px;
   padding: 10px 14px;
   border: 1px solid transparent;
-  background: linear-gradient(90deg, #2e5bff, #1e3fb8, #19359a, #142c7e);
+  background: #8B6950;/**/
   background-size: 400% auto;
-  color: white;
+  color: #fff;
   font-weight: 700;
   transition: transform 0.25s ease, background-position 0.7s ease;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: 0 2px 12px rgba(30, 63, 184, 0.28);
+  box-shadow: 0 2px 12px rgba(139, 105, 80, 0.28);
 }
 
 .action-btn:hover, .file-label:hover {
