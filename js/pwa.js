@@ -2,7 +2,7 @@
   if (!('serviceWorker' in navigator)) return;
 
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
+    navigator.serviceWorker.register('/js/sw.js', { scope: '/' })
       .then(reg => console.log('Service Worker registrado:', reg.scope))
       .catch(err => console.warn('Falha ao registrar Service Worker:', err));
   });

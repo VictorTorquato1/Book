@@ -1,17 +1,17 @@
 const CACHE_NAME = 'livro-tracker-v2';
 const APP_SHELL = [
-  './',
-  './index.html',
-  './favoritos.html',
-  './franquias.html',
-  './colecoes.html',
-  './styles.css',
-  './script.js',
-  './favoritos.js',
-  './franquias.js',
-  './colecoes.js',
-  './pwa.js',
-  './manifest.json'
+  '/',
+  '/index.html',
+  '/favoritos.html',
+  '/franquias.html',
+  '/colecoes.html',
+  '/css/styles.css',
+  '/js/script.js',
+  '/js/pwa.js',
+  '/js/favoritos.js',
+  '/js/franquias.js',
+  '/js/colecoes.js',
+  '/json/manifest.json'
 ];
 
 const OPTIONAL_ASSETS = [
