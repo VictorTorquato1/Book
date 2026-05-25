@@ -4,7 +4,7 @@ const sidebar = document.getElementById('sidebar');
 const openSidebar = document.getElementById('openSidebar');
 const closeSidebar = document.getElementById('closeSidebar');
 
-// Sidebar sempre inicia fechada
+//sidebar fechada
 window.addEventListener('DOMContentLoaded', () => {
   sidebar.classList.remove('open');
   document.getElementById('main').classList.remove('shifted');

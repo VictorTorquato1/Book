@@ -39,7 +39,7 @@
                            alert(data.error || 'Erro ao registrar.');
                            return;
                         }
-                        // Salva email e senha no localStorage para facilitar o login
+                        //salvamento de credencial
                         localStorage.setItem('lastRegister', JSON.stringify({ email, password }));
                         alert('Cadastro realizado! Faça login.');
                         window.location.href = 'login.html';
