@@ -1,40 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="icon" type="image/png" href="img/b.png" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/Login.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="icon" type="image/png" href="img/b.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/Login.js"></script>
 </head>
 <div class="fundo">
-<body class="login-page">
-  <div class="app">
-    <main id="main" class="main" aria-live="polite">
-      <section class="panel" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 470px;">
-        <form id="loginForm" style="width: 100%; max-width: 350px;">
-          <h1>Login</h1>
-          <h3>Entre com suas credenciais</h3>
-          <div class="field">
-            <label for="usuario">Usuário ou Email</label>
-            <input type="text" id="usuario" name="usuario" required />
-          </div>
-          <div class="field">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required />
-          </div>
-          <div class="field">
-            <h5>Continuar como convidado</h5>
-          </div>
-          <div style="display: flex; gap: 12px; justify-content: center;"> 
-            <button type="submit" class="action-btn">Entrar</button>
-            <button type="button" id="btnCadastro" class="action-btn">Cadastro</button>
-          </div>
-        </form>
-      </section>
-    </main>
-  </div>
-</body>
+
+  <body class="login-page">
+    <div class="app">
+      <main id="main" class="main" aria-live="polite">
+        <section class="panel"
+          style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 470px;">
+          <form id="loginForm" style="width: 100%; max-width: 350px;">
+            <h1>Login</h1>
+            <h3>Entre com suas credenciais</h3>
+            <div class="field">
+              <label for="usuario">Usuário ou Email</label>
+              <input type="text" id="usuario" name="usuario" required />
+            </div>
+            <div class="field">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" required />
+            </div>
+            <div class="field">
+              <a href="index.html">
+                <button type="button" class="action-btn">Continuar como convidado</button>
+              </a>
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button type="submit" class="action-btn">Entrar</button>
+              <button type="button" id="btnCadastro" class="action-btn">Cadastro</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
 </div>
+
 </html>
