@@ -327,7 +327,7 @@ body {
 
 .panel {
   background: var(--panel);
-  border: 1px solid var(--border);
+  border: 1px solid black;/**/
   border-radius: 14px;
   padding: 18px;
   max-width: 700px;
@@ -343,12 +343,13 @@ form label {
   color: var(--muted);
   margin-bottom: 4px;
   font-size: 0.84rem;
+  
 }
 
 form input, form textarea, form button {/**/
   width: 100%;
   border-radius: 10px;
-  border: 1px solid var(--border);
+  border: 1px solid black;
   background: #FBF3E8;
   color: var(--text);
   padding: 10px;
@@ -368,6 +369,22 @@ form button {
 form button:hover,
 form button:focus {
   background: var(--action-hover);
+}
+
+form .action-btn,
+form .file-label {
+  background: #8B6950;
+  color: white;
+  width: auto;
+}
+
+form .action-btn:hover,
+form .action-btn:focus,
+form .file-label:hover,
+form .file-label:focus {
+  background: #8B6950;
+  color: white;
+ 
 }
 
 .resume-box {
@@ -408,6 +425,7 @@ body.login-page .main .panel {
   margin-bottom: auto;
   width: 100%;
   max-width: 420px;
+  border: 1px solid black !important;
 }
 
 
@@ -471,20 +489,10 @@ body.login-page .main .panel {
   gap: 8px;
   border-radius: 12px;
   padding: 10px 14px;
-  border: 1px solid transparent;
+  border: 1px solid black;
   background: #8B6950;/**/
   background-size: 400% auto;
-  color: #fff;
-  font-weight: 700;
-  transition: transform 0.25s ease, background-position 0.7s ease;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 2px 12px rgba(139, 105, 80, 0.28);
-}
-
-.action-btn:hover, .file-label:hover {
-  transform: scale(1.07);
-  animation: slidebg 2.0s linear infinite;
+  color: black;
 }
 
 @keyframes slidebg {
@@ -570,7 +578,7 @@ body.login-page .main .panel {
     align-items: flex-start;
   }
 }
-.quadrado {
+.fundo{
   background-color: rgba(255, 255, 255, 0.7);
 }
 h5{
