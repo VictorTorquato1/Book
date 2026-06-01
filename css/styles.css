@@ -589,9 +589,5 @@ h1{
   background-size: 400% auto;
   color: rgb(255, 255, 255);/*Esta alterando cor dentro botao de login e cadastro*/
 }
-.checkbox-field {
-  display: inline-flex;
-  align-items: center;
-  
-}
+
 
