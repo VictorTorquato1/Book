@@ -1,4 +1,4 @@
-// Client-side cadastro: salva usuário em localStorage e cria token de sessão
+/* Client-side cadastro: salva usuário em localStorage e cria token de sessão
 function makeToken() {
   const arr = new Uint8Array(32);
   crypto.getRandomValues(arr);
@@ -31,4 +31,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // redireciona para área principal
     window.location.href = 'index.html';
   });
-});
+}); */ 

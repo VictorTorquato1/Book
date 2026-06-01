@@ -50,7 +50,6 @@
 }
 :root {
   --bg: #f3e2a9;
-  --panel: #FBF3E8;/*cor trocada*/
   --accent: #8b5e34;
   --action: #1e3fb8;
   --action-hover: #2e5bff;
@@ -325,14 +324,6 @@ body {
   justify-content: flex-end;
 }
 
-.panel {
-  background: var(--panel);
-  border: 1px solid black;/**/
-  border-radius: 14px;
-  padding: 18px;
-  max-width: 700px;
-  margin: auto;
-}
 
 form .field {
   margin-bottom: 12px;
@@ -346,16 +337,6 @@ form label {
   
 }
 
-form input, form textarea, form button {/**/
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid black;
-  background: #FBF3E8;
-  color: var(--text);
-  padding: 10px;
-  outline: none;
-  font-size: 0.95rem;
-}
 
 form button {
   margin-top: 8px;
@@ -371,12 +352,12 @@ form button:focus {
   background: var(--action-hover);
 }
 
-form .action-btn,
+/*form .action-btn,
 form .file-label {
   background: #8B6950;
   color: white;
   width: auto;
-}
+}*/
 
 form .action-btn:hover,
 form .action-btn:focus,
@@ -394,42 +375,6 @@ form .file-label:focus {
   border-radius: 12px;
   padding: 14px;
 }
-
-/* Fundo específico para a página de login */
-body.login-page {
-  background-image: url("../img/livros.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-/* Garantir que a camada de conteúdo fique acima do fundo */
-body.login-page .app {
-  position: relative;
-  z-index: 2;
-}
-
-/* (overlay removido) */
-
-/* Centralizar o painel de login na tela */
-body.login-page .main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 20px 16px;
-}
-
-body.login-page .main .panel {
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 100%;
-  max-width: 420px;
-  border: 1px solid black !important;
-}
-
-
-
 .resume-box h3 { margin: 0 0 8px; }
 
 .pdf-wrapper {
@@ -468,6 +413,10 @@ body.login-page .main .panel {
   color: var(--text);
   font-size: 0.9rem;
 }
+body.login-page .main .panel {
+  width: 100%;
+  max-width: 420px;
+}
 
 .pdf-container {
   height: 620px;
@@ -482,18 +431,6 @@ body.login-page .main .panel {
   height: auto;
 }
 
-.action-btn, .file-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 12px;
-  padding: 10px 14px;
-  border: 1px solid black;
-  background: #8B6950;/**/
-  background-size: 400% auto;
-  color: black;
-}
 
 @keyframes slidebg {
   0% { background-position: 0% 50%; }
@@ -573,26 +510,88 @@ body.login-page .main .panel {
     width: 100%;
     text-align: center;
   }
-
   .book-card {
     align-items: flex-start;
   }
 }
+
+/*Essa parte esta colocando uma cor branco  e tabem esta coocando trasparencia em 70% */
 .fundo{
   background-color: rgba(255, 255, 255, 0.7);
 }
+/*Colocando imagem de fundo */
+body.login-page {
+    background-image: url("../../img/livros.jpg");
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     min-height: 100vh;
+     margin: 0;
+     padding: 0;
+}
+/* Centralizar o painel de login no meio da tela */
+body.login-page .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px 16px;
+}
+/*Esta colocando bordas preta no formulario */
+form input, form textarea, form button {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;/*Borda no input*/
+  background: #FBF3E8;/*Essa cor esta no input Usuário ou Email e senha*/
+  color: var(--text);
+  padding: 10px;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+/*Esta centralizado ,continue como convidado ,alterando cor para preto*/
 h5{
   align-items: center;
   justify-content: center;
   display: flex;
   color:#000;
 }
+/*Entre com suas credenciais. Esta centralizando e alterando sua cor para preto*/
 h3{
   align-items: center;
   justify-content: center;
   display: flex;
   color:#000;
 }
+/*Esta alterando a cor do titulo de Login para preto*/
 h1{
    color:#000;
 }
+/*Esta colocando bordas no quadrado de login */
+.panel {
+  --panel: #FBF3E8;/*Cor do painel de login*/
+  background: var(--panel);
+  border: 1px solid black;/*Essa parte esta colocando bordas no painel de login*/
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 700px;
+  margin: auto;
+}
+/*Esta colocando bordas no botao de login e cadastro */
+.action-btn, .file-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid rgb(0, 0, 0);/*bordas botao */
+  background: #8B6950;/*Cor botao*/
+  background-size: 400% auto;
+  color: rgb(255, 255, 255);/*Esta alterando cor dentro botao de login e cadastro*/
+}
+.checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  
+}
+
