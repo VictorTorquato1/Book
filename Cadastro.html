@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/Cadastro.css">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <div class="quadradoo">
 <body class="cadastro-page">
@@ -13,19 +13,22 @@
     <form class="form">
         <h1>Cadastro</h1>
         <label class="form-label" for="Email">Email:</label>
-    <input class="form-input" type="email" id="Email"><br><br>
+    <input class="form-input" type="email" id="Email" required><br><br>
 
         <label class="form-label"for="usuario">Usuario:</label>
-       <input class="form-input" type="text" id="usuario"><br><br>
+       <input class="form-input" type="text" id="usuario" required><br><br>
 
        <label class="form-label" for="Senha">Senha:</label>
-       <input class="form-input" type="password" id="Senha">
-       <button class="btn">Criar</button>
+       <input class="form-input" type="password" id="Senha" required><br><br>
+
+       <label class="form-label" for="Senha">Repetir Senha:</label>
+       <input class="form-input" type="password" id="Senha" required><br><br>
+       <button class="action-btn">Criar</button>
   
     </form>
          </div>
     </div>
-     <script src="js/Cadastro.js"></script>
+     <script src="js/cadastro.js"></script>
 </body>
 </div>
 </html>
