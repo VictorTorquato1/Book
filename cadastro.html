@@ -9,7 +9,34 @@
 <div class="quadradoo">
 <body class="cadastro-page">
     <div class="container">
-     <div class="quadrado"> 
+     <div class="quadrado">
+      <main id="main" class="main" aria-live="polite">
+        <header class="top-bar">
+          <h1 class="brand-title">
+            <img src="img/scroll-sprite.png" alt="Logo Bibliotech" class="brand-title-logo" />
+            <a href="index.html"
+            style="text-decoration: none; color: var(--text);">BiblioTech | Registro de Leitura</a>
+          </h1>
+          <nav class="top-nav">
+            <a href="franquias.html" class="btn-icon" title="Franquias">Franquias</a>
+            <a href="favoritos.html" class="btn-icon" title="Favoritos">Favoritos</a>
+            <a href="colecoes.html" class="btn-icon" title="Coleções">Coleções</a>
+            <h1 class="brand-title">
+              <span>|</span>
+            </h1>
+            <a href="cadastro.html" class="btn-icon-2 btn-auth" id="registerBtn" title="Registrar">Registrar</a>
+            <a href="login.html" class="btn-icon-2 btn-auth" id="loginBtn" title="Login">Login</a>
+            <button id="userIcon" class="btn-icon"
+              style="display:none; border-radius:50%; width:36px; height:36px; overflow:hidden; background:#eee; border:1px solid #ccc;"
+              title="Perfil">
+              <img id="userPhotoIcon" src="https://via.placeholder.com/36x36?text=U" alt="Foto do usuário"
+                style="width:36px; height:36px; border-radius:50%; object-fit:cover;" />
+            </button>
+            <button id="logoutBtn" class="btn-icon btn-auth" style="display:none;">Sair</button>
+            <button id="installBtn" class="action-btn" style="display: none;">Instalar app</button>
+          </nav>
+        </header>
+
     <form class="form">
         <h1>Cadastro</h1>
         <label class="form-label" for="Email">Email:</label>
