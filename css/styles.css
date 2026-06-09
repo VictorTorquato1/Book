@@ -1,4 +1,24 @@
 
+* { box-sizing: border-box; }
+body {
+  color: var(--text);
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0; top: 0; right: 0; height: 140px;
+  background: radial-gradient(ellipse at top center, #fff4cf 0%, #e3c98566 42%, #c79b4c22 78%, #c79b4c00 100%);
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
 .btn-auth:hover, .btn-auth:focus {
   background: linear-gradient(100deg, #932737 0%, #6a1420 100%);
   color: #fff;
@@ -50,7 +70,6 @@
 }
 :root {
   --bg: #f3e2a9;
-  --panel: #FBF3E8;/*cor trocada*/
   --accent: #8b5e34;
   --action: #1e3fb8;
   --action-hover: #2e5bff;
@@ -58,25 +77,6 @@
   --muted: #7a6347;
   --border: #c9ae72;
 }
-
-* { box-sizing: border-box; }
-body {
-  color: var(--text);
-  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-/*body::before {
-  content: "";
-  position: fixed;
-  left: 0; top: 0; right: 0; height: 140px;
-  background: radial-gradient(ellipse at top center, #fff4cf 0%, #e3c98566 42%, #c79b4c22 78%, #c79b4c00 100%);
-  z-index: 0;
-  pointer-events: none;
-  mix-blend-mode: multiply;
-}*/
 
 .btn-icon {
   padding: 0.7em 1.7em;
@@ -131,7 +131,67 @@ body {
 
 /* Efeito metálico animado na borda ao passar o mouse */
 .btn-icon:hover, .btn-icon:focus {
-  background: #8f2232;
+  background: #e91636;
+  color: #fff;
+  text-decoration: none !important;
+  box-shadow: 0 2px 16px rgba(201, 17, 45, 0.3);
+  transform: scale(1.08);
+}
+
+.btn-icon-2 {
+  padding: 0.7em 1.7em;
+  border: none;
+  border-radius: 999px;
+  background: #e91636;
+  color: #f9f0da;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: color 0.2s, box-shadow 0.2s, transform 0.18s cubic-bezier(.4,0,.2,1);
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none !important;
+  min-width: unset;
+  height: auto;
+  z-index: 1;
+  outline: none;
+}
+
+.btn-icon-2::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 999px;
+  border: 3px solid #ead6ab;
+  box-shadow: 0 0 8px 2px rgba(201, 174, 114, 0.45), 0 0 0 2px rgba(111, 22, 35, 0.24);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.2s, border-image 0.2s, box-shadow 0.2s;
+}
+
+.btn-icon-2:hover::before, .btn-icon-2:focus::before {
+  border: 3px solid;
+  border-radius: 999px;
+  border-image: linear-gradient(120deg, #fff 0%, #b0b0b0 40%, #f5f5f5 60%, #b0b0b0 100%) 1;
+  border-color: #fff;
+  animation: metallic-border 2.5s linear infinite;
+}
+
+.btn-icon-2 > * {
+  position: relative;
+  z-index: 3;
+}
+
+/* Efeito metálico animado na borda ao passar o mouse */
+.btn-icon-2:hover, .btn-icon-2:focus {
+  background: #e91636;
   color: #fff;
   text-decoration: none !important;
   box-shadow: 0 2px 16px rgba(111, 22, 35, 0.3);
@@ -302,6 +362,7 @@ body {
   gap: 10px;
   color: var(--text);
   line-height: 1.1;
+  text-decoration: none;
 }
 
 .brand-title-logo {
@@ -325,14 +386,6 @@ body {
   justify-content: flex-end;
 }
 
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px;
-  max-width: 700px;
-  margin: auto;
-}
 
 form .field {
   margin-bottom: 12px;
@@ -343,18 +396,9 @@ form label {
   color: var(--muted);
   margin-bottom: 4px;
   font-size: 0.84rem;
+  
 }
 
-form input, form textarea, form button {/**/
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #FBF3E8;
-  color: var(--text);
-  padding: 10px;
-  outline: none;
-  font-size: 0.95rem;
-}
 
 form button {
   margin-top: 8px;
@@ -370,6 +414,22 @@ form button:focus {
   background: var(--action-hover);
 }
 
+/*form .action-btn,
+form .file-label {
+  background: #8B6950;
+  color: white;
+  width: auto;
+}*/
+
+form .action-btn:hover,
+form .action-btn:focus,
+form .file-label:hover,
+form .file-label:focus {
+  background: #8B6950;
+  color: white;
+ 
+}
+
 .resume-box {
   margin-top: 20px;
   border: 1px solid var(--border);
@@ -377,41 +437,6 @@ form button:focus {
   border-radius: 12px;
   padding: 14px;
 }
-
-/* Fundo específico para a página de login */
-body.login-page {
-  background-image: url("../img/livros.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-/* Garantir que a camada de conteúdo fique acima do fundo */
-body.login-page .app {
-  position: relative;
-  z-index: 2;
-}
-
-/* (overlay removido) */
-
-/* Centralizar o painel de login na tela */
-body.login-page .main {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 20px 16px;
-}
-
-body.login-page .main .panel {
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 100%;
-  max-width: 420px;
-}
-
-
-
 .resume-box h3 { margin: 0 0 8px; }
 
 .pdf-wrapper {
@@ -450,6 +475,10 @@ body.login-page .main .panel {
   color: var(--text);
   font-size: 0.9rem;
 }
+body.login-page .main .panel {
+  width: 100%;
+  max-width: 420px;
+}
 
 .pdf-container {
   height: 620px;
@@ -464,28 +493,6 @@ body.login-page .main .panel {
   height: auto;
 }
 
-.action-btn, .file-label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-radius: 12px;
-  padding: 10px 14px;
-  border: 1px solid transparent;
-  background: #8B6950;/**/
-  background-size: 400% auto;
-  color: #fff;
-  font-weight: 700;
-  transition: transform 0.25s ease, background-position 0.7s ease;
-  cursor: pointer;
-  text-decoration: none;
-  box-shadow: 0 2px 12px rgba(139, 105, 80, 0.28);
-}
-
-.action-btn:hover, .file-label:hover {
-  transform: scale(1.07);
-  animation: slidebg 2.0s linear infinite;
-}
 
 @keyframes slidebg {
   0% { background-position: 0% 50%; }
@@ -565,26 +572,152 @@ body.login-page .main .panel {
     width: 100%;
     text-align: center;
   }
-
   .book-card {
     align-items: flex-start;
   }
 }
-.quadrado {
+
+/*Essa parte esta colocando uma cor branco  e tabem esta coocando trasparencia em 70% */
+.fundo{
   background-color: rgba(255, 255, 255, 0.7);
 }
+/*Colocando imagem de fundo */
+body.login-page {
+    background-image: url("../../img/livros.jpg");
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     min-height: 100vh;
+     margin: 0;
+     padding: 0;
+}
+/* Centralizar o painel de login no meio da tela */
+body.login-page .main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px 16px;
+}
+
+form input, form textarea, form button {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid black;
+  background: #FBF3E8;
+  color: var(--text);
+  padding: 10px;
+  outline: none;
+  font-size: 0.95rem;
+}
+
 h5{
   align-items: center;
   justify-content: center;
   display: flex;
   color:#000;
 }
+
 h3{
   align-items: center;
   justify-content: center;
   display: flex;
   color:#000;
 }
+
 h1{
    color:#000;
 }
+
+.panel {
+  --panel: #FBF3E8;
+  background: var(--panel);
+  border: 1px solid black;
+  border-radius: 14px;
+  padding: 18px;
+  max-width: 700px;
+  margin: auto;
+}
+
+/*Borda botão login*/
+.action-btn, .file-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid rgb(0, 0, 0);
+  background: #8B6950;
+  background-size: 400% auto;
+  color: rgb(255, 255, 255);
+}
+
+/*Cadastro*/
+
+body.cadastro-page {
+  background-image: url("../../img/livros.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.container{
+  align-items: center;    
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.quadrado{
+height: 440px;
+ width: 400px;   
+ background: #FBF3E8;
+ border-radius: 20px;
+  border: 1px solid black;
+  
+}
+.form{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.form-input{
+ width: 80%;
+ height: 30px;
+ border: 1px solid black;
+ border-radius: 9px;
+  background: #FBF3E8;
+ 
+}
+
+.form-label{
+  width: 80%;
+ text-align: left;
+ margin-bottom: 5px;
+}
+.btn{
+  background-color: #8B6950;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  border: 1px solid black;
+  cursor: pointer;
+
+  display: block;
+  margin: 20px auto 0 auto;
+  
+}
+
+.quadradoo{
+ background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+
+
+
+
+

@@ -1,77 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="icon" type="image/png" href="img/b.png" />
-    <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="icon" type="image/png" href="img/b.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/Login.js"></script>
 </head>
-<div class="quadrado">
+
 <body class="login-page">
-  <li class="nav-item">
-            <a class="nav-link" href="formulario.html">Cadastro</a>
-          </li>
-  <div class="app">
-    <main id="main" class="main" aria-live="polite">
-      <section class="panel" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 470px;">
-        <form id="loginForm" style="width: 100%; max-width: 350px;">
-          <h1>Login</h1>
-          <h3>Entre com suas credenciais</h3>
-          <div class="field">
-            <label for="usuario">Usuário ou Email</label>
-            <input type="text" id="usuario" name="usuario" required />
-          </div>
-          <div class="field">
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha" required />
-            <h5>Continuar como convidado</h5> 
-          </div>
-          <div style="display: flex; gap: 12px; justify-content: center;">
-            <button type="submit" class="action-btn">Entrar</button>
-            <button type="button" class="action-btn" onclick="window.location.href='formulario.html'">Cadastrar</button>
-          </div>
-        </form>
-        <script>
-        //histórico de registro
-        window.addEventListener('DOMContentLoaded', function() {
-          const last = localStorage.getItem('lastRegister');
-          if (last) {
-            try {
-              const { email, password } = JSON.parse(last);
-              document.getElementById('usuario').value = email || '';
-              document.getElementById('senha').value = password || '';
-              localStorage.removeItem('lastRegister');
-            } catch {}
-          }
-        });
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const email = document.getElementById('usuario').value.trim();
-          const password = document.getElementById('senha').value;
-          if (!email || !password) return alert('Preencha todos os campos.');
-          try {
-            const res = await fetch('/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ email, password })
-            });
-            if (!res.ok) {
-              const data = await res.json();
-              alert(data.error || 'Erro ao fazer login.');
-              return;
-            }
-            const user = await res.json();
-            localStorage.setItem('user', JSON.stringify(user));
-            window.location.href = 'index.html';
-          } catch (err) {
-            alert('Erro ao conectar ao servidor.');
-          }
-        });
-        </script>
-      </section>
-    </main>
+  <div class="fundo">
+    <div class="app">
+      <main id="main" class="main" aria-live="polite">
+        <header class="top-bar">
+          <h1 class="brand-title">
+            <img src="img/scroll-sprite.png" alt="Logo Bibliotech" class="brand-title-logo" />
+            <a href="index.html"
+            style="text-decoration: none; color: var(--text);">BiblioTech | Registro de Leitura</a>
+          </h1>
+          <nav class="top-nav">
+            <a href="franquias.html" class="btn-icon" title="Franquias">Franquias</a>
+            <a href="favoritos.html" class="btn-icon" title="Favoritos">Favoritos</a>
+            <a href="colecoes.html" class="btn-icon" title="Coleções">Coleções</a>
+            <h1 class="brand-title">
+              <span>|</span>
+            </h1>
+            <a href="cadastro.html" class="btn-icon-2 btn-auth" id="registerBtn" title="Registrar">Registrar</a>
+            <a href="login.html" class="btn-icon-2 btn-auth" id="loginBtn" title="Login">Login</a>
+            <button id="userIcon" class="btn-icon"
+              style="display:none; border-radius:50%; width:36px; height:36px; overflow:hidden; background:#eee; border:1px solid #ccc;"
+              title="Perfil">
+              <img id="userPhotoIcon" src="https://via.placeholder.com/36x36?text=U" alt="Foto do usuário"
+                style="width:36px; height:36px; border-radius:50%; object-fit:cover;" />
+            </button>
+            <button id="logoutBtn" class="btn-icon btn-auth" style="display:none;">Sair</button>
+            <button id="installBtn" class="action-btn" style="display: none;">Instalar app</button>
+          </nav>
+        </header>
+
+        <section class="panel"
+          style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 470px;">
+          <form id="loginForm" style="width: 100%; max-width: 350px;">
+            <h1>Login</h1>
+            <h3>Entre com suas credenciais</h3>
+            <div class="field">
+              <label for="usuario">Usuário ou Email</label>
+              <input type="text" id="usuario" name="usuario" required />
+            </div>
+            <div class="field">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" required />
+            </div>
+            <div class="field">
+              <a href="index.html">
+                <button type="button" class="action-btn">Continuar como convidado</button>
+              </a>
+            </div>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+              <button type="submit" class="action-btn">Entrar</button>
+              <button type="button" id="btnCadastro" class="action-btn">Cadastro</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
   </div>
 </body>
-</div>
+
 </html>
