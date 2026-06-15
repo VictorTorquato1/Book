@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="css/Cadastro.css">
+</head>
+
+<body class="cadastro-page">
+    <div class="quadradoo">
+        <div class="container">
+            <div class="quadrado">
+                
+
+                <form id="cadastroForm" class="form">
+                    <h1>Cadastro</h1>
+                    <div class="field">
+                        <label class="form-label" for="Email">Email</label>
+                        <input class="form-input" type="email" id="Email" name="Email" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="usuario">Usuário</label>
+                        <input class="form-input" type="text" id="usuario" name="usuario" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="Senha">Senha</label>
+                        <input class="form-input" type="password" id="Senha" name="Senha" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="idade">Idade</label>
+                        <input class="form-input" type="number" id="idade" name="idade" min="0" max="200" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="cidade">Cidade</label>
+                        <input class="form-input" type="text" id="cidade" name="cidade" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="uf">UF</label>
+                        <input class="form-input" type="text" id="uf" name="uf" maxlength="2" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="endereco">Endereço</label>
+                        <input class="form-input" type="text" id="endereco" name="endereco" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="bairro">Bairro</label>
+                        <input class="form-input" type="text" id="bairro" name="bairro" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="numero">Número da Casa (AP)</label>
+                        <input class="form-input" type="number" id="numero" name="numero" required />
+                    </div>
+                    <div class="field">
+                        <label class="form-label" for="telefone">Telefone</label>
+                        <input class="form-input" type="tel" id="telefone" name="telefone" required placeholder="(XX)XXXXX-XXXX" />
+                    </div>
+                    <button class="btn" type="submit">Criar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/Cadastro.js"></script>
+</body>
+
+</html>
